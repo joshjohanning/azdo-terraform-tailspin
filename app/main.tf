@@ -40,9 +40,11 @@ resource "azurerm_app_service" "app" {
   app_service_plan_id = azurerm_app_service_plan.asp.id
 
   site_config {
-    dotnet_framework_version = "v4.0"
-    remote_debugging_enabled = true
+    linux_fx_version         = "DOTNETCORE|3.1"
+    remote_debugging_enabled = false
     remote_debugging_version = "VS2019"
+    http2_enabled            = true
+    always_on                = true
   }
 }
 
@@ -52,4 +54,12 @@ resource "azurerm_app_service_slot" "slotDemo" {
     resource_group_name = azurerm_resource_group.rg.name
     app_service_plan_id = azurerm_app_service_plan.asp.id
     app_service_name    = azurerm_app_service.app.name
+
+    site_config {
+      linux_fx_version         = "DOTNETCORE|3.1"
+      remote_debugging_enabled = false
+      remote_debugging_version = "VS2019"
+      http2_enabled            = true
+      always_on                = true
+    }
 }
