@@ -16,7 +16,7 @@ stages:
   - stage: plandev
     displayName: Plan DEV
     jobs:
-    - template: terraform-plan-job.yml@templates
+    - template: terraform/terraform-plan-job.yml@templates
       parameters:
         varFile: 'terraform.DEV.tfvars'
         # additionalVars: '-var "agent_token=$(AgentPoolToken)" -var "psql_password=$(PSQLPassword-DEV)"'
@@ -26,7 +26,7 @@ stages:
   - stage: applydev
     displayName: Apply DEV
     jobs:
-    - template: terraform-apply-deployment.yml@templates
+    - template: terraform/terraform-apply-deployment.yml@templates
       parameters:
         environment: DEV
         backendArg: '-backend-config=backend.DEV.tfvars'
