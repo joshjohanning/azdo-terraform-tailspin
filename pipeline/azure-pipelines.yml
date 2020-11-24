@@ -1,19 +1,20 @@
 trigger:
   - master
 
+variables:
+  devSubscription: demo-mslearn-tailspin-azure
+  rootFolder: app
+
 stages:
   - stage: plandev
     displayName: Plan DEV
-    variables:
-      devSubscription: demo-mslearn-tailspin-azure
-      rootFolder: app
     jobs:
     - template: templates/terraform-plan-job.yml
       parameters:
         varFile: 'terraform.DEV.tfvars'
         # additionalVars: '-var "agent_token=$(AgentPoolToken)" -var "psql_password=$(PSQLPassword-DEV)"'
         backendArg: '-backend-config=backend.DEV.tfvars'
-        azureSubscription: $(devSubscription)
+        azureSubscription: ${{ variables.devSubscription }}
         rootFolder: $(rootFolder)
   - stage: applydev
     displayName: Apply DEV
