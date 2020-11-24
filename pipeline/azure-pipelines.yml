@@ -1,6 +1,9 @@
 stages:
   - stage: plandev
     displayName: Plan DEV
+    variables:
+      devSubscription: demo-mslearn-tailspin-azure
+      rootFolder: app
     jobs:
     - template: ../../templates/terraform-plan-job.yml
       parameters:
