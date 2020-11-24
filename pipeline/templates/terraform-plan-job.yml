@@ -5,6 +5,7 @@ parameters:
   azureSubscription: ''
   rootFolder: ''
   artifactName: 'plan'
+  terraformVersion: '0.13.5'
   pool: 
     vmImage: 'ubuntu-latest'
 jobs:
@@ -15,6 +16,9 @@ jobs:
   - template: get-tf-credentials.steps.yml
     parameters:
       azureSubscription: ${{ parameters.azureSubscription }}
+  - task: TerraformInstaller@0
+    inputs:
+      terraformVersion: ${{ parameters.terraformVersion }}
   - script: |
       terraform init -no-color -input=false ${{ parameters.backendArg }}
       terraform plan -no-color -input=false -var-file=${{ parameters.varFile }} ${{ parameters.additionalVars }} -out="$(Build.ArtifactStagingDirectory)/out.plan"
