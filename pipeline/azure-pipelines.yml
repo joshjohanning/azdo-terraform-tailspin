@@ -13,7 +13,7 @@ stages:
         varFile: 'terraform.DEV.tfvars'
         # additionalVars: '-var "agent_token=$(AgentPoolToken)" -var "psql_password=$(PSQLPassword-DEV)"'
         backendArg: '-backend-config=backend.DEV.tfvars'
-        azureSubscription: $(devSubscription)
+        azureSubscription: ${{ variables.devSubscription }}
         rootFolder: $(rootFolder)
   - stage: applydev
     displayName: Apply DEV
@@ -22,5 +22,5 @@ stages:
       parameters:
         environment: DEV
         backendArg: '-backend-config=backend.DEV.tfvars'
-        azureSubscription: $(devSubscription)
+        azureSubscription: ${{ variables.devSubscription }}
         rootFolder: $(rootFolder)
