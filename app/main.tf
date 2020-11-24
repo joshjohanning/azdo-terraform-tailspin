@@ -15,13 +15,13 @@ terraform {
 
 # create resource group
 resource "azurerm_resource_group" "rg"{
-    name = "${var.resource_group}"
-    location = "${var.location}"
+    name = var.resource_group
+    location = var.location
 }
 
 # creates app service plan
 resource "azurerm_app_service_plan" "asp" {
-  name                = "${var.app_service_plan}"
+  name                = var.app_service_plan
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   kind                = "Linux"
@@ -34,7 +34,7 @@ resource "azurerm_app_service_plan" "asp" {
 }
 
 resource "azurerm_app_service" "app" {
-  name                = "${var.app_service}"
+  name                = var.app_service
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   app_service_plan_id = azurerm_app_service_plan.asp.id
@@ -47,7 +47,7 @@ resource "azurerm_app_service" "app" {
 }
 
 resource "azurerm_app_service_slot" "slotDemo" {
-    name                = "swap"
+    name                = var.app_service_slot
     location            = azurerm_resource_group.rg.location
     resource_group_name = azurerm_resource_group.rg.name
     app_service_plan_id = azurerm_app_service_plan.asp.id
