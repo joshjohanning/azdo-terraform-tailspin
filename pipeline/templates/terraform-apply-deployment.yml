@@ -4,7 +4,6 @@ parameters:
   azureSubscription: ''
   rootFolder: ''
   artifactName: 'plan'
-  terraformVersion: '0.13.5'
   pool: 
     vmImage: 'ubuntu-latest'
 jobs:
@@ -17,9 +16,6 @@ jobs:
       deploy:
         steps:
         - checkout: self
-        - task: TerraformInstaller@0
-          inputs:
-            terraformVersion: ${{ parameters.terraformVersion }}
         - task: DownloadBuildArtifacts@0
           displayName: Download Plan
           inputs:
