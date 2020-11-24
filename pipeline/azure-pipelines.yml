@@ -1,0 +1,20 @@
+stages:
+  - stage: plandev
+    displayName: Plan DEV
+    jobs:
+    - template: ../../templates/terraform-plan-job.yml
+      parameters:
+        varFile: 'terraform.DEV.tfvars'
+        # additionalVars: '-var "agent_token=$(AgentPoolToken)" -var "psql_password=$(PSQLPassword-DEV)"'
+        backendArg: '-backend-config=backend.DEV.tfvars'
+        azureSubscription: $(devSubscription)
+        rootFolder: $(rootFolder)
+  - stage: applydev
+    displayName: Apply DEV
+    jobs:
+    - template: ../../templates/terraform-apply-deployment.yml
+      parameters:
+        environment: DEV
+        backendArg: '-backend-config=backend.DEV.tfvars'
+        azureSubscription: $(devSubscription)
+        rootFolder: $(rootFolder)
