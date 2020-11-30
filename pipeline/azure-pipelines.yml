@@ -64,6 +64,7 @@ stages:
     jobs:
     - template: terraform/terraform-destroy-deployment.yml@templates
       parameters:
+        varFile: 'terraform.DEV.tfvars'
         environment: Dev-Destroy
         backendArg: '-backend-config=backend.DEV.tfvars'
         azureSubscription: ${{ variables.devSubscription }}
@@ -78,6 +79,7 @@ stages:
     jobs:
     - template: terraform/terraform-destroy-deployment.yml@templates
       parameters:
+        varFile: 'terraform.PROD.tfvars'
         environment: Prod-Destroy
         backendArg: '-backend-config=backend.PROD.tfvars'
         azureSubscription: ${{ variables.devSubscription }}
