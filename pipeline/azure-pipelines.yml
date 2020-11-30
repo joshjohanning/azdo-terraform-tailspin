@@ -56,3 +56,29 @@ stages:
         azureSubscription: ${{ variables.devSubscription }}
         rootFolder: $(rootFolder)
         artifactName: plan-prod
+      
+  - stage: destroyDev
+    dependsOn:
+    - applyDev
+    displayName: Destroy Dev
+    jobs:
+    - template: terraform/terraform-destroy-deployment.yml@templates
+      parameters:
+        environment: Dev-Destroy
+        backendArg: '-backend-config=backend.Dev.tfvars'
+        azureSubscription: ${{ variables.devSubscription }}
+        rootFolder: $(rootFolder)
+        artifactName: plan-dev
+
+  - stage: destroyProd
+    dependsOn:
+    - applyProd
+    displayName: Destroy Prod
+    jobs:
+    - template: terraform/terraform-destroy-deployment.yml@templates
+      parameters:
+        environment: Prod-Destroy
+        backendArg: '-backend-config=backend.Prod.tfvars'
+        azureSubscription: ${{ variables.devSubscription }}
+        rootFolder: $(rootFolder)
+        artifactName: plan-prod
