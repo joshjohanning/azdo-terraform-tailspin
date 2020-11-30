@@ -32,3 +32,23 @@ stages:
         backendArg: '-backend-config=backend.DEV.tfvars'
         azureSubscription: ${{ variables.devSubscription }}
         rootFolder: $(rootFolder)
+      
+  - stage: planprod
+    displayName: Plan PROD
+    jobs:
+    - template: terraform/terraform-plan-job.yml@templates
+      parameters:
+        varFile: 'terraform.PROD.tfvars'
+        # additionalVars: '-var "agent_token=$(AgentPoolToken)" -var "psql_password=$(PSQLPassword-DEV)"'
+        backendArg: '-backend-config=backend.DEV.tfvars'
+        azureSubscription: ${{ variables.devSubscription }}
+        rootFolder: $(rootFolder)
+  - stage: applyprod
+    displayName: Apply PROD
+    jobs:
+    - template: terraform/terraform-apply-deployment.yml@templates
+      parameters:
+        environment: PROD
+        backendArg: '-backend-config=backend.PROD.tfvars'
+        azureSubscription: ${{ variables.devSubscription }}
+        rootFolder: $(rootFolder)
