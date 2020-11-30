@@ -65,7 +65,7 @@ stages:
     - template: terraform/terraform-destroy-deployment.yml@templates
       parameters:
         environment: Dev-Destroy
-        backendArg: '-backend-config=backend.Dev.tfvars'
+        backendArg: '-backend-config=backend.DEV.tfvars'
         azureSubscription: ${{ variables.devSubscription }}
         rootFolder: $(rootFolder)
         artifactName: plan-dev
@@ -79,7 +79,7 @@ stages:
     - template: terraform/terraform-destroy-deployment.yml@templates
       parameters:
         environment: Prod-Destroy
-        backendArg: '-backend-config=backend.Prod.tfvars'
+        backendArg: '-backend-config=backend.PROD.tfvars'
         azureSubscription: ${{ variables.devSubscription }}
         rootFolder: $(rootFolder)
         artifactName: plan-prod
