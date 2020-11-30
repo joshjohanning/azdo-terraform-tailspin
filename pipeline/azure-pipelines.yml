@@ -23,6 +23,7 @@ stages:
         backendArg: '-backend-config=backend.DEV.tfvars'
         azureSubscription: ${{ variables.devSubscription }}
         rootFolder: $(rootFolder)
+        artifactName: plan-dev
   - stage: applydev
     displayName: Apply DEV
     jobs:
@@ -32,6 +33,7 @@ stages:
         backendArg: '-backend-config=backend.DEV.tfvars'
         azureSubscription: ${{ variables.devSubscription }}
         rootFolder: $(rootFolder)
+        artifactName: plan-dev
       
   - stage: planprod
     displayName: Plan PROD
@@ -43,6 +45,7 @@ stages:
         backendArg: '-backend-config=backend.DEV.tfvars'
         azureSubscription: ${{ variables.devSubscription }}
         rootFolder: $(rootFolder)
+        artifactName: plan-prod
   - stage: applyprod
     displayName: Apply PROD
     jobs:
@@ -52,3 +55,4 @@ stages:
         backendArg: '-backend-config=backend.PROD.tfvars'
         azureSubscription: ${{ variables.devSubscription }}
         rootFolder: $(rootFolder)
+        artifactName: plan-prod
