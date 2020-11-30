@@ -60,6 +60,7 @@ stages:
   - stage: destroyDev
     dependsOn:
     - applyDev
+    - applyProd
     displayName: Destroy Dev
     jobs:
     - template: terraform/terraform-destroy-deployment.yml@templates
