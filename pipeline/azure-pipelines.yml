@@ -73,6 +73,7 @@ stages:
   - stage: destroyProd
     dependsOn:
     - applyProd
+    - destroyDev
     displayName: Destroy Prod
     jobs:
     - template: terraform/terraform-destroy-deployment.yml@templates
