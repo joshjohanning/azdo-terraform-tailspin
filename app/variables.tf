@@ -26,6 +26,10 @@ variable "key_vault_tenant_id" {
   description = "The active directory used to verify kv access"
 }
 
-variable "key_vault_object_id" {
-  description = "the client id for the key vault policy"
+variable "key_vault_spn_object_id" {
+  description = "the spn client id for the key vault policy"
+}
+
+variable "key_vault_my_object_id" {
+  description = "my client id for the key vault policy"
 }
