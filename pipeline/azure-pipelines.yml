@@ -42,7 +42,7 @@ stages:
       parameters:
         varFile: 'terraform.PROD.tfvars'
         # additionalVars: '-var "agent_token=$(AgentPoolToken)" -var "psql_password=$(PSQLPassword-DEV)"'
-        backendArg: '-backend-config=backend.DEV.tfvars'
+        backendArg: '-backend-config=backend.PROD.tfvars'
         azureSubscription: ${{ variables.devSubscription }}
         rootFolder: $(rootFolder)
         artifactName: plan-prod
@@ -60,7 +60,6 @@ stages:
   - stage: destroyDev
     dependsOn:
     - applyDev
-    - applyProd
     displayName: Destroy Dev
     jobs:
     - template: terraform/terraform-destroy-deployment.yml@templates
