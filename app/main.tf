@@ -112,4 +112,6 @@ resource "azurerm_key_vault_secret" "applicationInsightsKey" {
   name         = "ApplicationInsightsKey"
   value        = "-test-"
   key_vault_id = azurerm_key_vault.kv.id
+
+  depends_on = [azurerm_key_vault_access_policy.service_principal]
 }
