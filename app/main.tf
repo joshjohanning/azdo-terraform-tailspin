@@ -109,7 +109,7 @@ resource "azurerm_key_vault_access_policy" "my" {
   key_vault_id = azurerm_key_vault.kv.id
 
   tenant_id = var.key_vault_tenant_id
-  object_id = var.key_vault_spn_object_id
+  object_id = var.key_vault_my_object_id
 
   secret_permissions = [
     "Get",
