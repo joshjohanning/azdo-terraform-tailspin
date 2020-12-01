@@ -12,4 +12,4 @@ key_vault = "kv-tailspin-DEV"
 
 key_vault_tenant_id = "6660b467-add3-4d9e-8ada-48b1721959f3"
 
-key_vault_object_id = "0aeba510-8d5d-483c-8b01-3c8fe239cd98"
+key_vault_object_id = "4ded4b3b-26a7-4ea4-a166-d33f49d8a0d3"
