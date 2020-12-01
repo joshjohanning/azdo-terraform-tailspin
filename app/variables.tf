@@ -17,3 +17,15 @@ variable "app_service" {
 variable "app_service_slot" {
   description = "The swap slot to create"
 }
+
+variable "key_vault" {
+  description = "The key vault to create to store app secrets"
+}
+
+variable "key_vault_tenant_id" {
+  description = "The active directory used to verify kv access"
+}
+
+variable "key_vault_object_id" {
+  description = "the client id for the key vault policy"
+}
