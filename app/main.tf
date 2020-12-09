@@ -71,8 +71,8 @@ resource "azurerm_key_vault" "kv" {
   tenant_id           = var.key_vault_tenant_id
   
   sku_name                        = "standard"
-  soft_delete_enabled             = false
-  enabled_for_deployment          = false
+  soft_delete_enabled             = true
+  enabled_for_deployment          = true
   enabled_for_template_deployment = false
   enabled_for_disk_encryption     = false
 }
