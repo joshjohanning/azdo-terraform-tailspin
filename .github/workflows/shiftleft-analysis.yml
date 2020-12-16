@@ -49,9 +49,9 @@ jobs:
         echo "Results: $count"
         echo ""
 
-        errorCount=$(echo "$results" | grep -c "error")
-        warningCount=$(echo "$results" | grep -c "warning")
-        noteCount=$(echo "$results" | grep -c "note")
+        errorCount=$(echo "$results" | grep -c 'error')
+        warningCount=$(echo "$results" | grep -c 'warning')
+        noteCount=$(echo "$results" | grep -c 'note')
 
         echo "Error Count: $errorCount"
         echo "Warning Count: $warningCount"
@@ -60,5 +60,5 @@ jobs:
 
         if (( $errorCount > 0 )); then
             echo "errors found - failing detect error check..."
-            exit -1
+            exit 5
         fi
