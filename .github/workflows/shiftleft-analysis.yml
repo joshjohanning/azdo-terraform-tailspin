@@ -43,7 +43,7 @@ jobs:
     - name: Detect Errors
       run: |
         
-        results=$(cat ${{ github.workspace }}/azdo-terraform-tailspin/reports/source-tf-report.sarif | jq -r '.runs[].results[].level')
+        results=$(cat ${{ github.workspace }}/reports/source-tf-report.sarif | jq -r '.runs[].results[].level')
 
         if [ -z "$results" ]; then count=0; else count=$(echo "$results" | grep -c '^'); fi
         echo "Results: $count"
