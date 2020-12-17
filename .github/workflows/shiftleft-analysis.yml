@@ -49,9 +49,9 @@ jobs:
         echo "Results: $count"
         echo ""
 
-        errorCount=$(echo "$results" | grep -o 'error' | wc -l)
-        warningCount=$(echo "$results" | grep -o 'warning' | wc -l)
-        noteCount=$(echo "$results" | grep -o 'note' | wc -l)
+        errorCount=$(echo "$results" | grep -c error)
+        warningCount=$(echo "$results" | grep -c warning)
+        noteCount=$(echo "$results" | grep -c note)
 
         echo "Error Count: $errorCount"
         echo "Warning Count: $warningCount"
