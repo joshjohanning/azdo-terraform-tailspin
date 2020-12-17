@@ -33,7 +33,7 @@ jobs:
     - name: Upload Sarif Report to Workflow
       uses: actions/upload-artifact@v2
       with:
-        name: my-artifact
+        name: sarif-report
         path: ${{ github.workspace }}/**/*.sarif
         
     - name: Upload report
@@ -46,6 +46,11 @@ jobs:
     needs:
       - Scan-TF
     steps:
+    - name: Download Sarif Report
+      uses: actions/download-artifact@v2
+      with:
+        name: sarif-report
+
     - name: Detect Errors
       run: |
         
