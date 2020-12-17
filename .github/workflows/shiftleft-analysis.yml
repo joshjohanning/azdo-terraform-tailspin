@@ -60,5 +60,5 @@ jobs:
 
         if (( $errorCount > 0 )); then
             echo "errors found - failing detect error check..."
-            exit 5
+            exit -1
         fi
