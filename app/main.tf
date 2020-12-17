@@ -72,7 +72,7 @@ resource "azurerm_key_vault" "kv" {
   
   sku_name                        = "standard"
   soft_delete_enabled             = true
-  enabled_for_deployment          = true
+  enabled_for_deployment          = false
   enabled_for_template_deployment = false
   enabled_for_disk_encryption     = false
 }
