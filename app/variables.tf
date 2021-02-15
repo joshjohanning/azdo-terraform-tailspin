@@ -33,3 +33,20 @@ variable "key_vault_spn_object_id" {
 variable "key_vault_my_object_id" {
   description = "my client id for the key vault policy"
 }
+
+variable "database_server_name" {
+  description = "database server name"
+}
+
+variable "database_name" {
+  description = "database server name"
+}
+
+variable "sql_firewall_rules" {
+  default = {
+    # 0.0.0.0 is the allow all azure services - see: https://docs.microsoft.com/en-us/rest/api/sql/firewallrules/createorupdate
+    "AllowAllWindowsAzureIps" = {
+      "ip" = "0.0.0.0"
+    }
+  }
+}

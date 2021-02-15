@@ -15,3 +15,7 @@ key_vault_tenant_id = "6660b467-add3-4d9e-8ada-48b1721959f3"
 key_vault_spn_object_id = "4ded4b3b-26a7-4ea4-a166-d33f49d8a0d3"
 
 key_vault_my_object_id = "dfd708fe-1a12-48ee-9784-26933e4d7f14"
+
+database_server_name = "tailspinjosh-server-dev"
+
+database_name = "tailspinjosh-db-dev"
