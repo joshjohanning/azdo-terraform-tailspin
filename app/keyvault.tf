@@ -35,7 +35,8 @@ resource "azurerm_key_vault_access_policy" "my" {
     "Get",
     "List",
     "Set",
-    "Delete"
+    "Delete",
+    "Purge"
   ]
 }
 
@@ -48,7 +49,7 @@ resource "azurerm_key_vault_secret" "applicationInsightsKey" {
 }
 
 resource "azurerm_key_vault_secret" "dbserverpw" {
-  name         = "DB-Server-Password"
+  name         = "DBServerPassword"
   value        = random_password.password.result
   key_vault_id = azurerm_key_vault.kv.id
 
