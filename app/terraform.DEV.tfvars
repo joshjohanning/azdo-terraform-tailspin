@@ -1,4 +1,4 @@
-location = "centralus"
+location = "eastus"
 
 resource_group = "rg-tailspin-terraform-DEV"
 
