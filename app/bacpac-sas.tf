@@ -1,10 +1,10 @@
 data "azurerm_resource_group" "bacpacstorage" {
-  name     = "stgacctcliRG"
+  name = "stgacctcliRG"
 }
 
 data "azurerm_storage_account" "bacpacstorage" {
-  name                     = "stgacctcli24"
-  resource_group_name      = data.azurerm_resource_group.bacpacstorage.name
+  name                = "stgacctcli24"
+  resource_group_name = data.azurerm_resource_group.bacpacstorage.name
 }
 
 data "azurerm_storage_container" "bacpacstorage" {

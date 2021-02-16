@@ -3,8 +3,8 @@ resource "azurerm_key_vault" "kv" {
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   tenant_id           = var.key_vault_tenant_id
-  
-  sku_name                        = "standard"
+
+  sku_name = "standard"
   # soft_delete_enabled             = true
   enabled_for_deployment          = true
   enabled_for_template_deployment = false
