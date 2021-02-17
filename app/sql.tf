@@ -5,7 +5,7 @@ resource "random_password" "password" {
   min_special      = 1
   min_upper        = 1
   min_lower        = 1
-  override_special = "_%@"
+  override_special = "!"
 }
 
 resource "azurerm_sql_server" "server" {
@@ -22,6 +22,7 @@ resource "azurerm_sql_database" "db" {
   server_name         = azurerm_sql_server.server.name
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
+  max_size_bytes      = 1073741824 # 1 gb
 
   import {
     storage_uri                  = "https://stgacctcli24.blob.core.windows.net/container1/tailspindatabase.bacpac"
