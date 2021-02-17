@@ -11,25 +11,12 @@ resource "azurerm_key_vault" "kv" {
   enabled_for_disk_encryption     = false
 }
 
-resource "azurerm_key_vault_access_policy" "service_principal" {
+resource "azurerm_key_vault_access_policy" "access_policy" {
+  count        = length(var.kv_service_principals)
   key_vault_id = azurerm_key_vault.kv.id
 
   tenant_id = var.key_vault_tenant_id
-  object_id = var.key_vault_spn_object_id
-
-  secret_permissions = [
-    "Get",
-    "List",
-    "Set",
-    "Delete"
-  ]
-}
-
-resource "azurerm_key_vault_access_policy" "my" {
-  key_vault_id = azurerm_key_vault.kv.id
-
-  tenant_id = var.key_vault_tenant_id
-  object_id = var.key_vault_my_object_id
+  object_id = var.kv_service_principals[element(keys(var.kv_service_principals), count.index)]["object_id"]
 
   secret_permissions = [
     "Get",
@@ -45,7 +32,7 @@ resource "azurerm_key_vault_secret" "applicationInsightsKey" {
   value        = "-test-"
   key_vault_id = azurerm_key_vault.kv.id
 
-  depends_on = [azurerm_key_vault_access_policy.service_principal]
+  depends_on = [azurerm_key_vault_access_policy.access_policy]
 }
 
 resource "azurerm_key_vault_secret" "dbserverpw" {
@@ -53,5 +40,5 @@ resource "azurerm_key_vault_secret" "dbserverpw" {
   value        = random_password.password.result
   key_vault_id = azurerm_key_vault.kv.id
 
-  depends_on = [azurerm_key_vault_access_policy.service_principal]
+  depends_on = [azurerm_key_vault_access_policy.access_policy]
 }
