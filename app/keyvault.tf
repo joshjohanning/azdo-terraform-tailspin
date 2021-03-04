@@ -2,7 +2,7 @@ resource "azurerm_key_vault" "kv" {
   name                = var.key_vault
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
-  tenant_id           = var.key_vault_tenant_id
+  tenant_id           = data.azurerm_subscription.primary.tenant_id
 
   sku_name = "standard"
   # soft_delete_enabled             = true
@@ -15,7 +15,7 @@ resource "azurerm_key_vault_access_policy" "access_policy" {
   count        = length(var.kv_service_principals)
   key_vault_id = azurerm_key_vault.kv.id
 
-  tenant_id = var.key_vault_tenant_id
+  tenant_id = data.azurerm_subscription.primary.tenant_id
   object_id = var.kv_service_principals[element(keys(var.kv_service_principals), count.index)]["object_id"]
 
   secret_permissions = [

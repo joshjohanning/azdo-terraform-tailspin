@@ -22,10 +22,6 @@ variable "key_vault" {
   description = "The key vault to create to store app secrets"
 }
 
-variable "key_vault_tenant_id" {
-  description = "The active directory used to verify kv access"
-}
-
 variable "kv_service_principals" {
   description = "objects to add to key vault access policy"
   default = {
