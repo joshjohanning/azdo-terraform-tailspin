@@ -11,6 +11,10 @@ resource "azurerm_key_vault" "kv" {
   enabled_for_disk_encryption     = false
 }
 
+# ideally would split this up for azuread data sources - but the pipeline spn would need azuread graph api (legacy) permissions
+# permissions neeeded (used for creating SPN's too)
+# # Type Application: Application.Read.All, Application.ReadWrite.All, Application.ReadWrite.OwnedBy, Directory.Read.All
+# # Type Delegated: Directory.AccessAsUser.All, Directory.Read.All
 resource "azurerm_key_vault_access_policy" "access_policy" {
   count        = length(var.kv_service_principals)
   key_vault_id = azurerm_key_vault.kv.id
